@@ -4,15 +4,18 @@
         <tab
             id="@+id/tab_favorites"
             icon="@drawable/ic_favorites"
-            title="Favorites" />
+            title="Favorites"
+            />
         <tab
             id="@+id/tab_nearby"
-            icon="@drawable/ic_nearby"
-            title="Calculation" />
+            icon="@drawable/paisa"
+            title="Calculation"
+            />
 
         <tab
             id="@+id/tab_friends"
             icon="@drawable/ic_friends"
-            title="Friends" />
+            title="Friends"
+            />
     </tabs>
 

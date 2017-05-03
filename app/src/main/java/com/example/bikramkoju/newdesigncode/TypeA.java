@@ -23,14 +23,15 @@ import java.util.ArrayList;
  */
 
 public class TypeA extends Fragment {
+   Module module;
 
     private GridView gridView;
     private GridViewAdapter gridViewAdapter;
-    TextView result;
+    private TextView result;
 
     SharedPreferences.Editor editor;
     SharedPreferences sharedPreferences;
-    long sum;
+    private long sum;
 
     public TypeA() {
         // Required empty public constructor
@@ -67,6 +68,9 @@ public class TypeA extends Fragment {
                 result.setText(String.valueOf(sum));
             }
         });
+
+        module=new Module();
+        module.setSum(sum);
     }
 
     private ArrayList<ImageItem> getData() {

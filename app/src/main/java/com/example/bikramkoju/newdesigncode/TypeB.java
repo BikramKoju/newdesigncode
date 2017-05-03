@@ -21,13 +21,23 @@ import java.util.ArrayList;
  */
 
 public class TypeB extends Fragment {
+
+    public long getSum() {
+        return sum;
+    }
+
+    public void setSum(long sum) {
+        this.sum = sum;
+    }
+
+
     private GridView gridView;
     private GridViewAdapter gridViewAdapter;
 
     SharedPreferences.Editor editor;
     SharedPreferences sharedPreferences;
     TextView result;
-    long sum;
+    private long sum;
 
     public TypeB() {
         // Required empty public constructor
@@ -58,9 +68,15 @@ public class TypeB extends Fragment {
                 long value = Long.parseLong(item.getTitle());
                 sum = sum - value;
                 result.setText(String.valueOf(sum));
+
+
             }
         });
+
+
     }
+
+
 
     private ArrayList<ImageItem> getData() {
         final ArrayList<ImageItem> imageItems = new ArrayList<>();
