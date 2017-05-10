@@ -1,6 +1,7 @@
 package com.example.bikramkoju.newdesigncode;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -23,7 +24,8 @@ import java.util.ArrayList;
  */
 
 public class TypeA extends Fragment {
-   Module module;
+    DatabaseHelper db;
+    Module module;
 
     private GridView gridView;
     private GridViewAdapter gridViewAdapter;
@@ -64,12 +66,15 @@ public class TypeA extends Fragment {
 
                 ImageItem item = (ImageItem) parent.getItemAtPosition(position);
                 long value = Long.parseLong(item.getTitle());
+
                 sum = sum + value;
                 result.setText(String.valueOf(sum));
+                db=new DatabaseHelper(getActivity());
+                db.addIncome(String.valueOf(sum));
+
             }
         });
-
-        module=new Module();
+        module = new Module();
         module.setSum(sum);
     }
 

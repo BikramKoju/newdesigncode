@@ -1,16 +1,19 @@
 package com.example.bikramkoju.newdesigncode;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Bikramkoju on 5/3/2017.
  */
 
-public class Output extends AppCompatActivity  {
-   Module m;
+public class Output extends AppCompatActivity {
+    DatabaseHelper db;
+    Module m;
     TextView output;
     TextView expenses;
     TypeB oobj;
@@ -21,25 +24,25 @@ public class Output extends AppCompatActivity  {
         setContentView(R.layout.output);
 
         output = (TextView) findViewById(R.id.output);
-        expenses= (TextView) findViewById(R.id.expenses);
+        expenses = (TextView) findViewById(R.id.expenses);
 
-        oobj=new TypeB();
+        db=new DatabaseHelper(this);
 
-      long value=oobj.getSum();
+        String exp=db.getExpense();
 
+        int inco=db.getIncome();
 
-
-        m=new Module();
-        output.setText("income is"+String.valueOf(m.getSum()));
-
-
+        m = new Module();
+        m.getSum();
+        //Toast.makeText(Output.this, "value" + m.getSum(), Toast.LENGTH_SHORT).show();
+       // output.setText("Income is: " + String.valueOf(m.getSum()));
+        output.setText("Your Income is: " + inco);
 
         //output.setText(String.valueOf(b));
 
-
-        expenses.setText("expenses is:"+value);
-
-
+        oobj = new TypeB();
+        long value = oobj.getSum();
+        expenses.setText("\n\n\nYour Expenses is: " + exp);
 
     }
 }

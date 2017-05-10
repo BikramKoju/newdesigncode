@@ -30,12 +30,12 @@ public class TypeB extends Fragment {
         this.sum = sum;
     }
 
-
     private GridView gridView;
     private GridViewAdapter gridViewAdapter;
 
     SharedPreferences.Editor editor;
     SharedPreferences sharedPreferences;
+    DatabaseHelper db;
     TextView result;
     private long sum;
 
@@ -67,16 +67,15 @@ public class TypeB extends Fragment {
                 ImageItem item = (ImageItem) parent.getItemAtPosition(position);
                 long value = Long.parseLong(item.getTitle());
                 sum = sum - value;
+
                 result.setText(String.valueOf(sum));
 
+                db=new DatabaseHelper(getActivity());
+                db.addExpense(String.valueOf(sum));
 
             }
         });
-
-
     }
-
-
 
     private ArrayList<ImageItem> getData() {
         final ArrayList<ImageItem> imageItems = new ArrayList<>();
@@ -86,9 +85,7 @@ public class TypeB extends Fragment {
 
         for (int i = 0; i < imgs.length(); i++) {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), imgs.getResourceId(i, -1));
-
             String vlue = nums.getString(i);
-
             imageItems.add(new ImageItem(bitmap, vlue));
         }
         return imageItems;

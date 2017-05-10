@@ -1,5 +1,6 @@
 package com.example.bikramkoju.newdesigncode;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.IdRes;
@@ -11,6 +12,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -19,6 +21,8 @@ import com.roughike.bottombar.OnTabReselectListener;
 import com.roughike.bottombar.OnTabSelectListener;
 
 public class MainActivity extends AppCompatActivity {
+
+    DatabaseHelper db;
 
     PagerSlidingTabStrip pagertab;
     ViewPager viewPager;
@@ -40,8 +44,27 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, TabMessage.get(tabId, false), Toast.LENGTH_SHORT).show();
                 } else if (tabId == R.id.tab_nearby) {
                     //Toast.makeText(MainActivity.this,TabMessage.get(tabId, false),Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(MainActivity.this, Output.class);
-                    startActivity(i);
+
+                   /* Intent i = new Intent(MainActivity.this, Output.class);
+                    startActivity(i);*/
+
+                    final Dialog dialogbox= new Dialog(MainActivity.this);
+                    dialogbox.setContentView(R.layout.dialog_layout);
+
+
+                     final TextView outputs = (TextView) dialogbox.findViewById(R.id.income);
+                    final TextView expensesz = (TextView) dialogbox.findViewById(R.id.expen);
+
+                    db=new DatabaseHelper(MainActivity.this);
+
+                    String exp=db.getExpense();
+                    int inco=db.getIncome();
+
+                    outputs.setText("Your Income is: " + inco);
+                    expensesz.setText("\nYour Expenses is: " + exp);
+
+                    dialogbox.show();
+
                 } else if (tabId == R.id.tab_friends) {
                     Toast.makeText(MainActivity.this, TabMessage.get(tabId, false), Toast.LENGTH_SHORT).show();
                 }
